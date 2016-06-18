@@ -1,0 +1,83 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Träningsdagbok - @ViewBag.Title</title>
+    <meta charset="utf-8" />
+
+
+    <link rel="stylesheet" href="~/lib/fullcalendar/dist/fullcalendar.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/lib/bootswatch/sandstone/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+
+</head>
+<body>
+
+    <div id="sidebar">
+        <img src="~/images/img_1782.jpg" alt="picture" class="headshoot" />
+        <span id="username">Johan Öhberg</span>
+
+        @*<ul class="list-group">
+                <li class="list-group-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="list-group-item"><a asp-controller="Home" asp-action="About">About</a></li>
+                <li class="list-group-item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+            </ul>*@
+
+
+        <ul class="list-group">
+            <li class="list-group-item"><a asp-controller="Home" asp-action="Index">Hem</a></li>
+            <li class="list-group-item"><a asp-controller="Workout" asp-action="OverView">Översikt</a></li>
+            <li class="list-group-item"><a asp-controller="Workout" asp-action="AddWorkout">Lägg till pass</a></li>
+            <li class="list-group-item">Statistik</li>
+            <li class="list-group-item">Inställningar</li>
+        </ul>
+
+    </div>
+
+    <div id="wrapper">
+        <nav class="navbar-default">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <button id="sidebarToggle" class="btn navbar-btn">
+                            <i class="fa fa-angle-left fa-2x"></i>
+                        </button>
+                    </li>
+                </ul>
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand">Träningsdagbok</a>
+
+            </div>
+        </nav>
+
+        <div id="main" class="container-fluid">
+
+            <div>
+                @RenderBody()
+            </div>
+
+        </div>
+        <footer class="container-fluid">
+            <div class="nav navbar-default navbar-fixed-bottom">
+                <h4 id="footerText" class="text-warning text-center">&copy; 2016 Johan Öhberg - Sweden</h4>
+            </div>
+        </footer>
+    </div>
+
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script type="text/javascript" src="~/lib/moment/moment.js"></script>
+    <script src="~/lib/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/lib/fullcalendar/dist/lang-all.js"></script>
+
+    <script type="text/javascript" src="~/js/fullCalendar.js"></script>
+    <script src="~/lib/jqueri-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/site.js"></script>
+
+    @RenderSection("Scripts", false)
+   
+</body>
+</html>
+
