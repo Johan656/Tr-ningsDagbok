@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TraningDiary</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/fullcalendar/dist/fullcalendar.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        @*<link rel="stylesheet" href="~/lib/bootswatch/sandstone/bootstrap.min.css" />*@
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/lib/fullcalendar/dist/fullcalendar.min.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        @*<link rel="stylesheet" href="~/lib/bootswatch/sandstone/bootstrap.min.css" />*@
+    </environment>
+</head>
+<body>
+    <div id="sidebar">
+        @if (User.Identity.IsAuthenticated) {
+        <img src="~/images/img_1782.jpg" alt="picture" class="headshoot" />
+        <span id="username">@User.Identity.Name</span>
+        }
+        <ul class="list-group">
+            <li class="list-group-item"><a asp-controller="Workout" asp-action="Index">Hem</a></li>
+            @if (User.Identity.IsAuthenticated) { 
+            <li class="list-group-item"><a asp-controller="Workout" asp-action="Calendar">Kallender</a></li>
+            <li class="list-group-item"><a asp-controller="Workout" asp-action="AddWorkout">Lägg till pass</a></li>
+            <li class="list-group-item">Statistik</li>
+            <li class="list-group-item">Inställningar</li>
+            <li class="list-group-item"><a asp-controller="Account" asp-action="Logout">Logga ut</a></li>
+            }
+        </ul>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar-default">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <button id="sidebarToggle" class="btn navbar-btn">
+                            <i class="fa fa-angle-left fa-2x"></i>
+                        </button>
+                    </li>
+                </ul>
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand">Träningsdagbok</a>
+            </div>
+        </nav>
+
+        <div id="main" class="container-fluid">
+
+            <div>
+                @RenderBody()
+            </div>
+
+        </div>
+        <footer class="container-fluid">
+            <div class="nav navbar-fixed-bottom">
+                <h4 id="footerText" class="text-warning text-center">&copy; 2016 Johan Öhberg - Sweden</h4>
+            </div>
+        </footer>
+    </div>
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/moment/min/moment.min.js"></script>
+        <script src="~/lib/fullcalendar/dist/fullcalendar.min.js"></script>
+        <script src="~/lib/fullcalendar/dist/lang/sv.js"></script>
+
+        <script type="text/javascript" src="~/js/fullCalendar.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/lib/moment/min/moment.min.js"></script>
+        <script src="~/lib/fullcalendar/dist/fullcalendar.min.js"></script>
+        <script src="~/lib/fullcalendar/dist/lang/sv.js"></script>
+
+        <script type="text/javascript" src="~/js/fullCalendar.js"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿<div>
+    <a href="#/" class="btn btn-sm btn-default"><i class="fa fa-angle-left"></i>Tillbaka</a>
+
+    <wait-cursor display-when="vm.isBusy"></wait-cursor>
+    <div class="alert alert-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
+
+    <table class="table table-striped table-responsive">
+        <tr>
+            <th>Aktivitet</th>
+            <th>Träningstyp</th>
+            <th>Längd</th>
+        </tr>
+        <tr ng-repeat="workoutType in vm.workout">
+            <td>{{workoutType.activity}}</td>
+            <td>{{workoutType.type}}</td>
+            <td>{{workoutType.length}}</td>
+        </tr>
+    </table>
+
+    <form>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label">Titel</label>
+            <div class="col-md-10">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="WorkoutDate" class="col-md-2 control-label">Datum</label>
+            <div class="col-md-10">
+                <input asp-for="WorkoutDate" class="form-control" type="date" />
+                <span asp-validation-for="WorkoutDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Comment" class="col-md-2 control-label">Kommentar</label>
+            <div class="col-md-10">
+                <textarea cols="40" rows="4" asp-for="Comment" class="form-control">Kommentar</textarea>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Workout>
+
+<div class="row">
+    <div class="col-md-6">
+        <h1>Avklarade pass</h1>
+        <p>Dina avklarade pass</p>
+    </div>
+
+    <div class="col-md-6">
+        <h1>Kommande pass</h1>
+        <p>Dina kommande pass</p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(workout => workout.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(workout => workout.Comment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(workout => workout.WorkoutDate)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@Html.DisplayFor(modelitem => item.Title)</th>
+                        <th>@Html.DisplayFor(modelitem => item.Comment)</th>
+                        <th>@Html.DisplayFor(modelitem => item.WorkoutDate)</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

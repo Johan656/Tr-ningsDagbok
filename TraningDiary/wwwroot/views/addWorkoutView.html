@@ -1,0 +1,31 @@
+﻿<div>
+    <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
+    <wait-cursor display-when="vm.isBusy"></wait-cursor>
+    <table class="table table-responsive table-striped">
+        <tr ng-repeat="workout in vm.workouts">
+            <td>{{workout.title}}</td>
+            <td>{{workout.workoutDate | date:'dd-MM-yyyy'}}</td>
+            <td><a ng-href="#/editor/{{workout.id}}" class="btn btn-default">Visa</a></td>
+        </tr>
+    </table>
+
+    <form novalidate name="newWokoutsForm" ng-submit="vm.addWorkout()">
+        <div class="form-group">
+            <label for="Title">Titel</label>
+            <input class="form-control" type="text" id="Title" name="Title" ng-model="vm.newWorkout.title" required ng-minlength="3" />
+            <span ng-show="newWokoutsForm.titel.$error.required" class="text-warning">Titel saknas.</span>
+            <span ng-show="newWokoutsForm.titel.$error.minlength" class="text-warning">Titeln måste var minst 3 tecken långt.</span>
+        </div>
+        <div class="form-group">
+            <label for="Title">Titel</label>
+            <input class="form-control" type="text" id="Title1" name="Title1" ng-model="vm.newWorkout.title" required ng-minlength="3" />
+            <span ng-show="newWokoutsForm.titel.$error.required" class="text-warning">Titel saknas.</span>
+            <span ng-show="newWokoutsForm.titel.$error.minlength" class="text-warning">Titeln måste var minst 3 tecken långt.</span>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-default" type="submit" value="Lägg till" ng-disabled="newWokoutsForm.$invalid" />
+        </div>
+    </form>
+</div>
+
+

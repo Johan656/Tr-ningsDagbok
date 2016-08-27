@@ -1,0 +1,187 @@
+﻿@model TraningDiary.ViewModels.TestViewModel
+
+@section Scripts{
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular-route/angular-route.min.js"></script>
+    <script src="~/js/simpleControls.js"></script>
+    <script src="~/js/workout-addWorkout.js"></script>
+    <script src="~/js/workoutController.js"></script>
+    <script src="~/js/workoutEditorController.js"></script>
+}
+
+<div>
+    <div class="row" ng-app="workout-addWorkout">
+
+        <div class="col-md-6">
+            <div class="page-header"><h2>Lägg till träningspass</h2></div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                Lägg till
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Lägg till pass</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form asp-controller="WorkoutController" asp-action="addWorkout" class="form-horizontal">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="Title" class="col-md-2 control-label">Titel</label>
+                                    <div class="col-md-10">
+                                        <input asp-for="Title" class="form-control" />
+                                        <span asp-validation-for="Title" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="WorkoutDate" class="col-md-2 control-label">Datum</label>
+                                    <div class="col-md-10">
+                                        <input asp-for="WorkoutDate" class="form-control" type="date" />
+                                        <span asp-validation-for="WorkoutDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Comment" class="col-md-2 control-label">Kommentar</label>
+                                    <div class="col-md-10">
+                                        <textarea cols="40" rows="4" asp-for="Comment" class="form-control">Kommentar</textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="btn-group-sm col-md-offset-2" role="group" aria-label="Välj träningstyp">
+                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#strengthCollapse" aria-expanded="false" aria-controls="collapseExample">Styrka</button>
+                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#enduranceCollapse" aria-expanded="false" aria-controls="collapseExample">Uthållighet</button>
+                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mobilityCollapse" aria-expanded="false" aria-controls="collapseExample">Rölighet</button>
+                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#speedCollapse" aria-expanded="false" aria-controls="collapseExample">Snabbhet</button>
+                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#restCollapse" aria-expanded="false" aria-controls="collapseExample">Vila</button>
+                                </div>
+                                <br />
+                                <div class="collapse" id="strengthCollapse">
+
+                                    <div class="well">
+                                        <button type="button" class="close" data-toggle="collapse" data-target="#strengthCollapse" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <p>Styrka</p>
+
+                                        <div class="form-group">
+                                            <label asp-for="Activity" class="col-md-2 control-label">Aktivitet</label>
+                                            <select asp-for="Activity" class="col-md-3">
+                                                <option>Activity1</option>
+                                                <option>Activity2</option>
+                                                <option>Activity3</option>                                                
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Length" class="col-md-2 control-label">Längd</label>
+                                            <div class="col-md-10"><input asp-for="Length" type="time" class="form-control" /></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="collapse" id="enduranceCollapse">
+                                    <div class="well">
+                                        <button type="button" class="close" data-toggle="collapse" data-target="#enduranceCollapse" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <p>Uthållighet</p>
+                                        <div class="form-group">
+                                            <label asp-for="Activity" class="col-sm-2 control-label">Aktivitet</label>
+                                            <div class="col-md-10"><input asp-for="Activity" class="form-control" /></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Intensity" class="col-sm-2 control-label">Intensitet</label>
+                                            <div class="col-md-10"><input asp-for="Intensity" class="form-control" /></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Length" class="col-sm-2 control-label">Längd</label>
+                                            <div class="col-md-10"><input asp-for="Length" type="time" class="form-control" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="collapse" id="mobilityCollapse">
+                                    <div class="well">
+                                        <button type="button" class="close" data-toggle="collapse" data-target="#mobilityCollapse" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                                        <p>Rörlighet</p>
+                                        <div class="form-group">
+                                            <label asp-for="Length" class="col-md-2 control-label">Längd</label>
+                                            <div class="col-md-10"><input asp-for="Length" type="time" class="form-control" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="collapse" id="speedCollapse">
+                                    <div class="well">
+                                        <button type="button" class="close" data-toggle="collapse" data-target="#speedCollapse" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                                        <p>Snabbhet</p>
+                                        <div class="form-group">
+                                            <label asp-for="Activity" class="col-md-2 control-label">Aktivitet</label>
+                                            <div class="col-md-10"><input asp-for="Activity" class="form-control" /></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Quantity" class="col-md-2 control-label">Antal</label>
+                                            <div class="col-md-10"><input asp-for="Quantity" class="form-control" /></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Length" class="col-md-2 control-label">Längd</label>
+                                            <div class="col-md-10"><input asp-for="Length" type="time" class="form-control" /></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="collapse" id="restCollapse">
+                                    <div class="well">
+                                        <button type="button" class="close" data-toggle="collapse" data-target="#restCollapse" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                                        <p>Vila</p>
+                                        <div class="form-group">
+                                            <label asp-for="Length" class="col-md-2 control-label">Längd</label>
+                                            <div class="col-md-10"><input asp-for="Length" type="time" class="form-control" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                </div>
+                 <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Spara</button>
+                 </div>
+                 </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h2>Test Modal!</h2>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <div class="col-md-6">
+            <div class="page-header"><h2>Träningspass</h2></div>
+            <div ng-view></div>
+        </div>
+     </div>
+</div>
+
